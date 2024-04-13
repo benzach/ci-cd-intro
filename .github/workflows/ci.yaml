@@ -6,6 +6,7 @@ on:
     push:
         branches: ["main"]
         paths: ["src/**"]
+    workflow_dispatch:
 jobs:
     test:
         name: 'run unit tests'
@@ -21,6 +22,17 @@ jobs:
           run: npm install
         - name: 'build'
           run: npm run build
+        - name: 'current folder'
+          run: echo "$(pwd)"
+          shell: bash
+        - name: 'list files'
+          run: echo "$(ls)"
+          shell: bash
+        # - name: 'change to dist folder'
+        #   run: |
+        #     cd dist
+        #     pwd
+        #     npm run test
         - name: 'run tests'
           run: npm run test
     lint:
