@@ -13,7 +13,6 @@ jobs:
         defaults:
             run:
                 shell: bash
-                working-directory: ./dist
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
