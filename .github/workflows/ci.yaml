@@ -32,8 +32,9 @@ jobs:
           run: |
             cd dist
             pwd
-        - name: 'run tests'
-          run: npm run test
+            npm run test
+        # - name: 'run tests'
+        #   run: npm run test
     lint:
         name: 'run linter'
         defaults:
