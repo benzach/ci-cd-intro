@@ -41,7 +41,7 @@
   "jest": {
     "testPathIgnorePatterns": [
       "/src/",
-      "/tests/"
+      "test\\.ts"
     ]
   }
 }

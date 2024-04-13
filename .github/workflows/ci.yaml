@@ -28,13 +28,13 @@ jobs:
         - name: 'list files'
           run: echo "$(ls)"
           shell: bash
-        - name: 'change to dist folder'
-          run: |
-            cd dist
-            pwd
-            npm run test
-        # - name: 'run tests'
-        #   run: npm run test
+        # - name: 'change to dist folder'
+        #   run: |
+        #     cd dist
+        #     pwd
+        #     npm run test
+        - name: 'run tests'
+          run: npm run test
     lint:
         name: 'run linter'
         defaults:
