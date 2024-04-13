@@ -25,9 +25,13 @@ jobs:
         - name: 'current folder'
           run: echo "$(pwd)"
           shell: bash
-        - name: "list files"
+        - name: 'list files'
           run: echo "$(ls)"
           shell: bash
+        - name: 'change to dist folder'
+          run: |
+            cd dist
+            pwd
         - name: 'run tests'
           run: npm run test
     lint:
