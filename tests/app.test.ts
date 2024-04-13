@@ -1,18 +1,31 @@
 const request = require('supertest');
 const app = require('../src/app').default;
 //import app from './app';
-describe('POST /', () => {
+// describe('POST /', () => {
+//     it('responds with hello', async () => {
+//         const response = await request(app)
+//             .get('/')
+//             .send()
+//             .expect('Content-Type', /json/)
+//             .expect(200);
+//         expect(response.body.message).toEqual('hello');
+//         console.log(response.body);
+//     });
+//     afterAll(() => {
+//         console.log("stop all");
+//         app.close();
+//     });
+// });
+describe('POST /add', () => {
     it('responds with hello', async () => {
         const response = await request(app)
             .get('/')
             .send()
-            .expect('Content-Type',/json/)
+            .expect('Content-Type', /json/)
             .expect(200);
         expect(response.body.message).toEqual('hello');
         console.log(response.body);
     });
-});
-describe('POST /add', () => {
     it('responseds with sum of two numbers', async () => {
         const num1 = 5;
         const num2 = 10;
@@ -32,5 +45,14 @@ describe('POST /add', () => {
             .expect(400);
         expect(response.body.error).toEqual('Invalid Parameters');
 
+
+    });
+    afterAll((done) => {
+        console.log("stop all");
+        done();
+        // app.close(() => {
+        //     done();
+        // });
     });
 });
+
