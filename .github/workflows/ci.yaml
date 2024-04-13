@@ -25,6 +25,9 @@ jobs:
         - name: 'current folder'
           run: echo "$(pwd)"
           shell: bash
+        - name: "list files"
+          run: echo "$(ls)"
+          shell: bash
         - name: 'run tests'
           run: npm run test
     lint:
