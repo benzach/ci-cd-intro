@@ -23,7 +23,7 @@ jobs:
         - name: 'build'
           run: npm run build
         - name: 'current folder'
-          run: echo "${PWD##*/}"
+          run: echo "$(pwd)"
           shell: bash
         - name: 'run tests'
           run: npm run test
