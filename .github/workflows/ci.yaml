@@ -7,7 +7,11 @@ on:
         branches: ["main"]
         paths: ["src/**"]
     workflow_dispatch:
-jobs:
+        inputs:
+            PR_number:
+                description: 'Pull request number'
+                required: true
+jobs:    
     test:
         name: 'run unit tests'
         defaults:
@@ -16,6 +20,26 @@ jobs:
                 working-directory: .
         runs-on: ubuntu-latest
         steps:
+        - name: 'Verify Pull Request Number'
+          uses: actions/github-script@v5
+          id: verify_pr_number
+          with:
+              github-token: ${{ secrets.GITHUB_TOKEN}}
+              result-encoding: string
+              script: |
+                const response = await github.rest.pulls.get({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    pull_number: ${{github.event.inputs.PR_number}}
+                });
+                if(response.data.number !== ${{github.event.inputs.PR_number}})
+                {
+                    throw new Error('Pull request is not open or number is not valid!');
+                }else
+                {
+                    console.log('PR ref: ' + response.data.head.ref);
+                    return response.data.head.ref;
+                }
         - uses: actions/checkout@v2
           name: 'checkout repository'
         - name: 'Install Dependencies'
